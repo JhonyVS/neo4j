@@ -13,34 +13,37 @@ public class DB {
                 AuthTokens.basic("neo4j", "12345"));
 
         
-        Usuario u1 = new Usuario("Jorge", "jorge@email.com", "123");
+        //Usuario u1 = new Usuario(111,"Jorge", "jorge@email.com", "123");
+        //Usuario u2 = new Usuario(222,"Marcelo", "marcelo@email.com", "123");
+        //Usuario u = new Usuario(444,"Mario", "mario@email.com", "123");
         try(Session session = driver.session()){
             System.out.println("Acceso correcto");
 
             //Adicionando usuario
-            session.run("CREATE (u1:Usuario{nombre:$nombre, email:$email, pass:$pass})",
-                    parameters("nombre", u1.getNombre(), "email", u1.getEmail(),
-                            "pass", u1.getPass()));
+            //session.run("CREATE (u:Usuario{cod:$cod, nombre:$nombre, email:$email, pass:$pass})",
+              //      parameters("cod",u.getCod_usuario(),"nombre", u.getNombre(), "email", u.getEmail(),
+                //            "pass", u.getPass()));
+            //mas usuarios
+            //session.run("CREATE (u2:Usuario{cod:$cod, nombre:$nombre, email:$email, pass:$pass})",
+            //        parameters("cod",u2.getCod_usuario(),"nombre", u2.getNombre(), "email", u2.getEmail(),
+            //                "pass", u2.getPass()));
             //System.out.println(result.consume().counters().nodesCreated());
 
-            //Criar um relacionamento
-//            Result result = session.run("MATCH (p1:Pessoa{cpf:$cpf}),(p2:Pessoa{cpf:$cpf2})" +
-//                    "CREATE (p1)-[:AMIGO]->(p2)",
-//                    parameters("cpf", "111.111.111-01", "cpf2", "222.222.222-02"));
-//            System.out.println(result.consume().counters().relationshipsCreated());
+            //relacionamento
+            //Result result = session.run("MATCH (u1:Usuario{cod:$cod}),(u2:Usuario{cod:$cod2})" +
+              //    "CREATE (u1)-[:AMIGO]->(u2)",
+              //     parameters("cod", 333, "cod2", 222));
+            //System.out.println(result.consume().counters().relationshipsCreated());
 
-            //Recuperando todas as pessoas
-//            Result result = session.run("MATCH (p:Pessoa) RETURN p.cpf, p.nome, p.nascimento");
-//            System.out.println(result.stream().map(record ->
-//                    new Pessoa(record.get(0).asString(),
-//                    record.get(1).asString(),
-//                    record.get(2).asLocalDate()))
-//                    .collect(Collectors.toList()));
+            //Recuperando todos los usuarios
+            //Result result = session.run("MATCH (u:Usuario) RETURN u.cod, u.nombre, u.email, u.pass");
+            //System.out.println(result.stream().map(record ->new Usuario(record.get(0).asInt(),record.get(1).asString(),
+                  //record.get(2).asString(),record.get(3).asString())).collect(Collectors.toList()));
 
-            //Buscando os CPFs de todos os amigos de uma pessoa
-//            Result result = session.run("MATCH (p:Pessoa{cpf:$cpf})-[:AMIGO]->(p2) RETURN p2",
-//                    parameters("cpf", "111.111.111-01"));
-//            result.list().forEach(r -> System.out.println(r.get(0).asNode().values() ));
+            //Buscando los cods de los ROLES (cod -> respuesta)
+            //Result result = session.run("MATCH (u:Usuario{cod:$cod})-[:USUARIO_ROL]->(u2) RETURN u2",
+              //      parameters("cod", 333));
+            //result.list().forEach(r -> System.out.println(r.get(0).asNode().values() ));
 
         }finally {
             driver.close();

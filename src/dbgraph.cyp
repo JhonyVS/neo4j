@@ -36,3 +36,13 @@ CREATE (felipe)-[:SUBJECT]->(informatica)
 CREATE (luis)-[:SUBJECT]->(informatica)
 
 MATCH (n) return n
+
+//borrar todo
+match(n) delete n
+//borrar nodo
+MATCH (n:Usuario {nombre:'Rene'}) DELETE n
+//Borrar relacion
+MATCH (n:Usuario {nombre: 'Rene'})-[r:AMIGO]->() DELETE r
+
+//relaciones ++
+MATCH (u1:Usuario{cod:222}),(r1:Rol{cod:101}) CREATE (u1)-[:USUARIO_ROL]->(r1)

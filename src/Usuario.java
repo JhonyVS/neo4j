@@ -35,4 +35,8 @@ public class Usuario {
     public void setPass(String pass) {
         this.pass = pass;
     }
+    public String toString(){
+        return "("+cod_usuario+","+nombre+","+email+","+pass+")"; 
+
+    }
 }
